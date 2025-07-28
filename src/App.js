@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+// Importar los componentes que hice
+import Navbar from './components/Navbar';
+import Imagen from './components/Imagen';
+import Titulo from './components/Titulo';
+import Parrafo from './components/Parrafo';
+import Enlace from './components/Enlace';
+import Lista from './components/Lista';
+import Tabla from './components/Tabla';
+import Formulario from './components/Formulario';
+import Boton from './components/Boton';
+import InputTexto from './components/InputTexto';
+import InputContrasena from './components/InputContrasena';
+import InputCorreo from './components/InputCorreo';
+import InputTelefono from './components/InputTelefono';
+import InputURL from './components/InputURL';
+import InputBusqueda from './components/InputBusqueda';
 
 function App() {
+  // Controlar que pagina mostrar
+  const [paginaActual, setPaginaActual] = useState('inicio');
+
+  // Cambiar de pagina
+  const irAPagina = (nuevaPagina) => {
+    setPaginaActual(nuevaPagina);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar seccionActiva={paginaActual} cambiarSeccion={irAPagina} />
+
+      <div
+        className="container py-4"
+        style={{ backgroundColor: 'rgb(48, 48, 46)', minHeight: '100vh' }}
+      >
+        {/* Aquí irán las páginas */}
+      </div>
     </div>
   );
 }
