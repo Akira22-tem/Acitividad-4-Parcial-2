@@ -18,9 +18,10 @@ import InputURL from './components/InputURL';
 import InputBusqueda from './components/InputBusqueda';
 
 function App() {
-  // Controlar que pagina se mostrar actualmente
+  // Controlar que pagina mostrar
   const [paginaActual, setPaginaActual] = useState('inicio');
 
+  // Cambiar de pagina
   const irAPagina = (nuevaPagina) => {
     setPaginaActual(nuevaPagina);
   };
@@ -37,6 +38,7 @@ function App() {
 
   const [errores, setErrores] = useState({});
 
+  // Info de la tabla
   const columnas = ['ID', 'Nombre', 'Email', 'Puntos'];
   const filas = [
     [1, 'Ippo Makunouchi', 'ippo@boxeo.com', 89],
@@ -69,7 +71,7 @@ function App() {
     }
   };
 
-  // Valida el formulario
+  // Validar el formulario
   const validarForm = () => {
     const nuevosErrores = {};
 
@@ -92,7 +94,7 @@ function App() {
     return nuevosErrores;
   };
 
-  // Envia el formulario
+  // Enviar formulario
   const enviarFormulario = (evento) => {
     evento.preventDefault();
     const erroresForm = validarForm();
@@ -289,6 +291,39 @@ function App() {
                 />
               </div>
             </Formulario>
+          </div>
+        )}
+
+        {/* Pagina de entrenamiento */}
+        {paginaActual === 'entrenamiento' && (
+          <div className="bg-white p-4 rounded shadow">
+            <Titulo textoTitulo="ENTRENAMIENTO" nivelImportancia={2} />
+            <Parrafo contenidoParrafo="Haz clic en los botones para entrenar:" />
+            <div className="text-center mt-4">
+              <Boton
+                textoBoton="Entrenar Jabs"
+                colorBoton="primary"
+                alClickear={clickBoton}
+              />
+              <Boton
+                textoBoton="Practicar Esquivas"
+                colorBoton="warning"
+                alClickear={clickBoton}
+                estilosBoton="ms-2"
+              />
+              <Boton
+                textoBoton="Trabajo de Saco"
+                colorBoton="success"
+                alClickear={clickBoton}
+                estilosBoton="ms-2"
+              />
+              <Boton
+                textoBoton="Sparring"
+                colorBoton="danger"
+                alClickear={clickBoton}
+                estilosBoton="ms-2"
+              />
+            </div>
           </div>
         )}
       </div>
