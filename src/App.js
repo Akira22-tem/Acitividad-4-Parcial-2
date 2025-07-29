@@ -18,10 +18,9 @@ import InputURL from './components/InputURL';
 import InputBusqueda from './components/InputBusqueda';
 
 function App() {
-  // Controlar que pagina mostrar
+  // Controlar que pagina se mostrar actualmente
   const [paginaActual, setPaginaActual] = useState('inicio');
 
-  // Cambiar de pagina
   const irAPagina = (nuevaPagina) => {
     setPaginaActual(nuevaPagina);
   };
@@ -38,7 +37,6 @@ function App() {
 
   const [errores, setErrores] = useState({});
 
-  // Info de la tabla
   const columnas = ['ID', 'Nombre', 'Email', 'Puntos'];
   const filas = [
     [1, 'Ippo Makunouchi', 'ippo@boxeo.com', 89],
@@ -71,7 +69,7 @@ function App() {
     }
   };
 
-  // Validar el formulario
+  // Valida el formulario
   const validarForm = () => {
     const nuevosErrores = {};
 
@@ -94,7 +92,7 @@ function App() {
     return nuevosErrores;
   };
 
-  // Enviar formulario
+  // Envia el formulario
   const enviarFormulario = (evento) => {
     evento.preventDefault();
     const erroresForm = validarForm();
@@ -176,6 +174,121 @@ function App() {
             <Titulo textoTitulo="RANKING DE BOXEADORES" nivelImportancia={2} />
             <Parrafo contenidoParrafo="Estos son los mejores boxeadores de la academia:" />
             <Tabla encabezados={columnas} datosTabla={filas} />
+          </div>
+        )}
+
+        {/* Pagina de inscripcion */}
+        {paginaActual === 'inscripcion' && (
+          <div className="bg-white p-4 rounded shadow">
+            <Titulo textoTitulo="INSCRIPCION" nivelImportancia={2} />
+            <Parrafo contenidoParrafo="Llena este formulario para inscribirte:" />
+
+            <Formulario alEnviarFormulario={enviarFormulario}>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Nombre completo *</label>
+                  <InputTexto
+                    placeholderTexto="Tu nombre completo"
+                    valorInput={datosUsuario.nombre}
+                    alCambiarInput={cambiarDato('nombre')}
+                    esRequerido
+                    estilosInput={errores.nombre ? 'is-invalid' : ''}
+                  />
+                  {errores.nombre && (
+                    <div className="invalid-feedback d-block">
+                      {errores.nombre}
+                    </div>
+                  )}
+                </div>
+
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Email *</label>
+                  <InputCorreo
+                    placeholderTexto="tu@email.com"
+                    valorInput={datosUsuario.email}
+                    alCambiarInput={cambiarDato('email')}
+                    esRequerido
+                    estilosInput={errores.email ? 'is-invalid' : ''}
+                  />
+                  {errores.email && (
+                    <div className="invalid-feedback d-block">
+                      {errores.email}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Contraseña *</label>
+                  <InputContrasena
+                    placeholderTexto="Minimo 6 caracteres"
+                    valorInput={datosUsuario.password}
+                    alCambiarInput={cambiarDato('password')}
+                    esRequerido
+                    estilosInput={errores.password ? 'is-invalid' : ''}
+                  />
+                  {errores.password && (
+                    <div className="invalid-feedback d-block">
+                      {errores.password}
+                    </div>
+                  )}
+                </div>
+
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Telefono</label>
+                  <InputTelefono
+                    placeholderTexto="123456789"
+                    valorInput={datosUsuario.telefono}
+                    alCambiarInput={cambiarDato('telefono')}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Sitio web</label>
+                  <InputURL
+                    placeholderTexto="https://mi-sitio.com"
+                    valorInput={datosUsuario.website}
+                    alCambiarInput={cambiarDato('website')}
+                  />
+                </div>
+
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Buscar</label>
+                  <InputBusqueda
+                    placeholderTexto="Buscar algo..."
+                    valorInput={datosUsuario.buscar}
+                    alCambiarInput={cambiarDato('buscar')}
+                  />
+                </div>
+              </div>
+
+              <div className="text-center mt-3">
+                <Boton
+                  textoBoton="Limpiar"
+                  colorBoton="secondary"
+                  alClickear={() => {
+                    setDatosUsuario({
+                      nombre: '',
+                      email: '',
+                      password: '',
+                      telefono: '',
+                      website: '',
+                      buscar: '',
+                    });
+                    setErrores({});
+                  }}
+                />
+                <Boton
+                  textoBoton="Enviar"
+                  tipoBoton="submit"
+                  colorBoton="primary"
+                  estilosBoton="ms-2"
+                />
+              </div>
+            </Formulario>
           </div>
         )}
       </div>
