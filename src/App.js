@@ -169,6 +169,15 @@ function App() {
             <Lista elementosLista={listaTecnicas} />
           </div>
         )}
+
+        {/* Pagina del ranking */}
+        {paginaActual === 'ranking' && (
+          <div className="bg-white p-4 rounded shadow">
+            <Titulo textoTitulo="RANKING DE BOXEADORES" nivelImportancia={2} />
+            <Parrafo contenidoParrafo="Estos son los mejores boxeadores de la academia:" />
+            <Tabla encabezados={columnas} datosTabla={filas} />
+          </div>
+        )}
       </div>
     </div>
   );
