@@ -120,7 +120,23 @@ function App() {
 
   return (
     <div>
-      <p>App en construcción...</p>
+      <Navbar seccionActiva={paginaActual} cambiarSeccion={irAPagina} />
+
+      <div
+        className="container py-4"
+        style={{ backgroundColor: 'rgb(48, 48, 46)', minHeight: '100vh' }}
+      >
+        {/* Pagina de inicio */}
+        {paginaActual === 'inicio' && (
+          <div className="bg-white p-4 rounded shadow">
+            <Titulo
+              textoTitulo="KBG (ACADEMIA DE BOXEO)"
+              nivelImportancia={1}
+            />
+            <Parrafo contenidoParrafo="Bienvenido a Kamogawa BOXING GYM, nuestra academia de boxeo. Aqui puedes aprender las mejores tecnicas de combate." />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
