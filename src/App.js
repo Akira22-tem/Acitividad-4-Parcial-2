@@ -136,6 +136,39 @@ function App() {
             <Parrafo contenidoParrafo="Bienvenido a Kamogawa BOXING GYM, nuestra academia de boxeo. Aqui puedes aprender las mejores tecnicas de combate." />
           </div>
         )}
+
+        {/* Pagina del espiritu */}
+        {paginaActual === 'espiritu' && (
+          <div className="bg-white p-4 rounded shadow text-center">
+            <Titulo textoTitulo="ESPIRITU DE LUCHA" nivelImportancia={2} />
+            <div className="mb-4">
+              <Imagen
+                fuenteImagen="https://www.marstonstore.cl/cdn/shop/collections/hajime-no-ippo-1.jpg?v=1721540008&width=750"
+                descripcionImagen="Hajime no Ippo"
+                anchoImagen="400"
+                altoImagen="300"
+              />
+            </div>
+            <Parrafo contenidoParrafo="El boxeo no es solo golpear, es disciplina y determinacion. Como dice Ippo, cada golpe cuenta para convertirte en campeon." />
+            <div className="mt-3">
+              <Enlace
+                urlDestino="https://www.youtube.com/watch?v=4yygeZ3Egr0"
+                textoEnlace="Ver video de Ippo"
+                estilosEnlace="btn btn-primary"
+                ventana="_blank"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Pagina de tecnicas */}
+        {paginaActual === 'tecnicas' && (
+          <div className="bg-white p-4 rounded shadow">
+            <Titulo textoTitulo="TECNICAS DE BOXEO" nivelImportancia={2} />
+            <Parrafo contenidoParrafo="Estas son las tecnicas basicas que debes dominar:" />
+            <Lista elementosLista={listaTecnicas} />
+          </div>
+        )}
       </div>
     </div>
   );
